@@ -11,9 +11,9 @@ load_dotenv()
 
 def get_openai_client():
     """OpenAI 클라이언트를 안전하게 생성하는 함수"""
-    api_key = os.getenv("OPENAI_API_KEY")
+    api_key = os.getenv("GEMINI_API_KEY")
     if not api_key:
-        raise ValueError("OpenAI API 키가 설정되지 않았습니다. .env 파일을 확인해주세요.")
+        raise ValueError("GEMINI API 키가 설정되지 않았습니다. .env 파일을 확인해주세요.")
     return openai.OpenAI(api_key=api_key)
 
 def get_pdf_list(folder_path="pdfs"):
