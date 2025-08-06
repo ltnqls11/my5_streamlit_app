@@ -3,6 +3,18 @@
 from PyPDF2 import PdfReader
 import os
 import glob
+import openai
+from dotenv import load_dotenv
+
+# 환경 변수 로드
+load_dotenv()
+
+def get_openai_client():
+    """OpenAI 클라이언트를 안전하게 생성하는 함수"""
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        raise ValueError("OpenAI API 키가 설정되지 않았습니다. .env 파일을 확인해주세요.")
+    return openai.OpenAI(api_key=api_key)
 
 def get_pdf_list(folder_path="pdfs"):
     """지정된 폴더에서 PDF 파일 목록을 가져옵니다."""
@@ -109,7 +121,6 @@ import datetime
 import json
 import hashlib
 import uuid
-import openai
 
 def create_personalized_learning_path(username, learning_history, preferences=None):
     """사용자 맞춤 학습 경로 생성"""
@@ -934,7 +945,6 @@ try:
     from langchain_openai import ChatOpenAI
 except ImportError:
     from langchain.chat_models import ChatOpenAI
-import openai
 import json
 import random
 
@@ -972,7 +982,7 @@ def create_qa_chain(vectorstore):
 # 텍스트 요약 기능
 def summarize_text(text, max_length=500):
     try:
-        client = openai.OpenAI()
+        client = get_openai_client()
         
         prompt = f"""
         다음 텍스트를 {max_length}자 이내로 요약해주세요. 
@@ -996,7 +1006,7 @@ def summarize_text(text, max_length=500):
 # 퀴즈 생성 기능
 def generate_quiz(text, num_questions=5):
     try:
-        client = openai.OpenAI()
+        client = get_openai_client()
         
         prompt = f"""
         다음 텍스트를 바탕으로 {num_questions}개의 객관식 퀴즈를 생성해주세요.
@@ -1075,7 +1085,7 @@ def load_study_history(filename="study_history.json"):
 # 🆕 단답형 퀴즈 생성 기능
 def generate_short_answer_quiz(text, num_questions=5):
     try:
-        client = openai.OpenAI()
+        client = get_openai_client()
         
         prompt = f"""
         다음 텍스트를 바탕으로 {num_questions}개의 단답형 퀴즈를 생성해주세요.
@@ -1675,7 +1685,7 @@ def generate_flashcards(text, num_cards=10):
 def generate_direct_answer(text, question):
     """벡터스토어 없이 직접 텍스트 기반 답변 생성"""
     try:
-        client = openai.OpenAI()
+        client = get_openai_client()
         
         # 텍스트가 너무 길면 관련 부분만 추출
         relevant_text = text[:4000] if len(text) > 4000 else text
@@ -2975,7 +2985,7 @@ def update_user_usage(username, feature_type):
 def generate_direct_answer(text, question):
     """벡터스토어 없이 직접 텍스트 기반 답변 생성"""
     try:
-        client = openai.OpenAI()
+        client = get_openai_client()
         
         # 텍스트가 너무 길면 관련 부분만 추출
         relevant_text = text[:4000] if len(text) > 4000 else text
