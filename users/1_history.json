@@ -70,5 +70,11 @@
     "question": "닐슨의 사용성 정의는?",
     "answer": "닐슨의 사용성 정의는 다음과 같은 다섯 가지 요소로 구성됩니다: 효율성, 학습용이성, 기억용이성, 에러 빈도 및 정도, 주관적 만족도입니다.",
     "topic": "질의응답"
+  },
+  {
+    "timestamp": "2025-08-06T12:24:47.662358",
+    "question": "'인간공학기사 개념.pdf' 문서 요약 요청",
+    "answer": "요약 생성 중 오류가 발생했습니다: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable",
+    "topic": "요약"
   }
 ]

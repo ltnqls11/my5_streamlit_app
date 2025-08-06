@@ -11,9 +11,9 @@ load_dotenv()
 
 def get_openai_client():
     """OpenAI 클라이언트를 안전하게 생성하는 함수"""
-    api_key = os.getenv("GEMINI_API_KEY")
+    api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
-        raise ValueError("GEMINI API 키가 설정되지 않았습니다. .env 파일을 확인해주세요.")
+        raise ValueError("OPENAI API 키가 설정되지 않았습니다. .env 파일을 확인해주세요.")
     return openai.OpenAI(api_key=api_key)
 
 def get_pdf_list(folder_path="pdfs"):
@@ -125,7 +125,7 @@ import uuid
 def create_personalized_learning_path(username, learning_history, preferences=None):
     """사용자 맞춤 학습 경로 생성"""
     try:
-        client = openai.OpenAI()
+        client = get_openai_client()
         
         # 학습 이력 분석
         recent_topics = []
@@ -170,7 +170,7 @@ def create_personalized_learning_path(username, learning_history, preferences=No
 def generate_adaptive_quiz(username, learning_history, difficulty_level="medium"):
     """사용자 수준에 맞는 적응형 퀴즈 생성"""
     try:
-        client = openai.OpenAI()
+        client = get_openai_client()
         
         # 사용자 약점 분석
         weak_topics = analyze_weak_areas(learning_history)
@@ -279,7 +279,7 @@ def generate_shareable_quiz_link(quiz_content, instructor_name, course_name):
 def generate_premium_exam_questions(pdf_content, exam_type="midterm", num_questions=20):
     """프리미엄 예상문제 생성"""
     try:
-        client = openai.OpenAI()
+        client = get_openai_client()
         
         prompt = f"""
         다음 교재 내용을 바탕으로 {exam_type} 시험 예상문제 {num_questions}개를 생성해주세요.
@@ -426,7 +426,7 @@ def generate_academy_analytics(academy_id):
 def generate_detailed_summary(pdf_content):
     """상세 요약 생성"""
     try:
-        client = openai.OpenAI()
+        client = get_openai_client()
         
         prompt = f"""
         다음 내용을 체계적으로 요약해주세요:
@@ -455,7 +455,7 @@ def generate_detailed_summary(pdf_content):
 def generate_concept_map(pdf_content):
     """개념 맵 생성"""
     try:
-        client = openai.OpenAI()
+        client = get_openai_client()
         
         prompt = f"""
         다음 내용의 개념 맵을 텍스트 형태로 생성해주세요:
@@ -489,7 +489,7 @@ def generate_concept_map(pdf_content):
 def generate_practice_problems(pdf_content):
     """연습 문제 생성"""
     try:
-        client = openai.OpenAI()
+        client = get_openai_client()
         
         prompt = f"""
         다음 내용을 바탕으로 연습 문제 10개를 생성해주세요:
@@ -518,7 +518,7 @@ def generate_practice_problems(pdf_content):
 def generate_solution_guide(pdf_content):
     """해설 가이드 생성"""
     try:
-        client = openai.OpenAI()
+        client = get_openai_client()
         
         prompt = f"""
         다음 내용에 대한 문제 해결 가이드를 작성해주세요:
@@ -557,7 +557,7 @@ def create_qa_chain(vectorstore):
     
     try:
         # API 키 확인
-        api_key = os.getenv("OPENAI_API_KEY")
+        api_key = os.getenv("GEMINI_API_KEY")
         if not api_key:
             print("OpenAI API 키가 설정되지 않았습니다.")
             return None
@@ -892,7 +892,7 @@ def create_cross_document_qa_chain(vectorstore):
             return None
             
         # API 키 확인
-        api_key = os.getenv("OPENAI_API_KEY")
+        api_key = os.getenv("GEMINI_API_KEY")
         if not api_key:
             print("OpenAI API 키가 설정되지 않았습니다.")
             return None

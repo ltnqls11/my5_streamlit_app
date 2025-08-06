@@ -126,7 +126,7 @@ def save_flashcard_completion_history():
 def generate_cornell_notes(text, note_style="standard"):
     """코넬 노트 형식으로 내용을 정리하는 함수"""
     try:
-        client = openai.OpenAI()
+        client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         
         prompt = f"""
         다음 내용을 코넬 노트 필기법에 따라 정리해주세요. 반드시 아래 형식을 정확히 따라주세요:
