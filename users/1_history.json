@@ -76,5 +76,11 @@
     "question": "'인간공학기사 개념.pdf' 문서 요약 요청",
     "answer": "요약 생성 중 오류가 발생했습니다: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable",
     "topic": "요약"
+  },
+  {
+    "timestamp": "2025-08-06T14:15:40.976913",
+    "question": "'인간공학기사 개념.pdf' 문서 요약 요청",
+    "answer": "인간공학은 인간의 신체적, 감각적 특성을 이해하고 이를 바탕으로 작업 환경을 최적화하는 학문이다. 주요 개념으로는 감각 반응시간(청각 > 촉각 > 시각 > 미각), 양립성(운동 및 공간 양립성), 크로머의 경험법칙(신체 측정 변화), 정보이론의 응용(Hick-Hyman 법칙, Magic number), 그리고 사용성 정의(효율성, 학습용이성 등)가 있다. \n\n작업생리학에서는 진동수와 고통, 청력 손실 주파수, 관절 및 근육 종류, 피로 척도, 체온 변화, VDT 증후군 예방 조명 수준, 근력의 종류, 척추 개수, RPE 측정법 등이...",
+    "topic": "요약"
   }
 ]
